@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dexio-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dexio
+      POSTGRES_PASSWORD: dexio
+      POSTGRES_DB: dexio
+    ports:
+      - "5434:5432"
+    volumes:
+      - dexio_pgdata:/var/lib/postgresql/data
+
+volumes:
+  dexio_pgdata:

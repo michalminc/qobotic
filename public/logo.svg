@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 80" fill="none">
+  <!-- Head profile -->
+  <g transform="translate(8, 6)">
+    <!-- Face silhouette -->
+    <path d="M28 68 C28 68 18 62 14 52 C10 42 12 35 14 30 C16 25 18 22 20 18 C22 14 26 10 30 8 C34 6 38 6 40 8 C42 10 42 14 40 18"
+          stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Forehead to back of head -->
+    <path d="M40 18 C42 14 46 10 50 10 C54 10 56 14 56 20 C56 26 54 32 50 36 C46 40 42 42 38 44"
+          stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Jaw -->
+    <path d="M38 44 C34 48 30 54 28 60 C27 64 28 68 28 68"
+          stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    <!-- Eye -->
+    <circle cx="34" cy="28" r="2.5" fill="#888" opacity="0.6"/>
+    <!-- Nose hint -->
+    <path d="M22 36 C20 38 18 42 20 44" stroke="#666" stroke-width="1" fill="none" stroke-linecap="round"/>
+
+    <!-- Neural network nodes -->
+    <circle cx="44" cy="14" r="2" fill="#c4484f"/>
+    <circle cx="52" cy="12" r="1.5" fill="#c4484f" opacity="0.8"/>
+    <circle cx="56" cy="20" r="1.5" fill="#888"/>
+    <circle cx="50" cy="24" r="1.5" fill="#888"/>
+    <circle cx="58" cy="28" r="1.5" fill="#888"/>
+    <circle cx="48" cy="8" r="1.5" fill="#c4484f" opacity="0.6"/>
+    <circle cx="60" cy="16" r="1.2" fill="#888" opacity="0.5"/>
+    <circle cx="54" cy="32" r="1.2" fill="#888" opacity="0.4"/>
+    <circle cx="46" cy="20" r="1.2" fill="#888" opacity="0.6"/>
+    <circle cx="62" cy="24" r="1" fill="#888" opacity="0.3"/>
+
+    <!-- Neural network connections -->
+    <line x1="44" y1="14" x2="52" y2="12" stroke="#555" stroke-width="0.5" opacity="0.6"/>
+    <line x1="44" y1="14" x2="50" y2="24" stroke="#555" stroke-width="0.5" opacity="0.5"/>
+    <line x1="52" y1="12" x2="56" y2="20" stroke="#555" stroke-width="0.5" opacity="0.6"/>
+    <line x1="52" y1="12" x2="48" y2="8" stroke="#555" stroke-width="0.5" opacity="0.5"/>
+    <line x1="56" y1="20" x2="58" y2="28" stroke="#555" stroke-width="0.5" opacity="0.5"/>
+    <line x1="56" y1="20" x2="60" y2="16" stroke="#555" stroke-width="0.5" opacity="0.4"/>
+    <line x1="50" y1="24" x2="58" y2="28" stroke="#555" stroke-width="0.5" opacity="0.5"/>
+    <line x1="50" y1="24" x2="54" y2="32" stroke="#555" stroke-width="0.5" opacity="0.4"/>
+    <line x1="44" y1="14" x2="46" y2="20" stroke="#555" stroke-width="0.5" opacity="0.5"/>
+    <line x1="46" y1="20" x2="50" y2="24" stroke="#555" stroke-width="0.5" opacity="0.5"/>
+    <line x1="58" y1="28" x2="62" y2="24" stroke="#555" stroke-width="0.5" opacity="0.3"/>
+    <line x1="60" y1="16" x2="62" y2="24" stroke="#555" stroke-width="0.5" opacity="0.3"/>
+    <line x1="48" y1="8" x2="44" y2="14" stroke="#555" stroke-width="0.5" opacity="0.5"/>
+
+    <!-- Accent glow on key nodes -->
+    <circle cx="44" cy="14" r="4" fill="#c4484f" opacity="0.15"/>
+    <circle cx="52" cy="12" r="3" fill="#c4484f" opacity="0.1"/>
+  </g>
+
+  <!-- Text "Qobots" -->
+  <text x="82" y="52" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="700" fill="white" letter-spacing="-1">
+    Qobots
+  </text>
+</svg>
