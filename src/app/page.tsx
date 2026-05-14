@@ -22,9 +22,9 @@ function MockNav() {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06]">
-      <div className="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Qobotic" width={600} height={61} priority loading="eager" className="h-12 w-auto" />
+          <Image src="/logo.png" alt="Qobotic" width={600} height={61} priority loading="eager" className="h-6 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
