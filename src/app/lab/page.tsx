@@ -10,9 +10,9 @@ import { FlaskConical, ArrowRight } from "lucide-react";
 function MockNav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06]">
-      <div className="max-w-[1280px] mx-auto px-6 h-24 flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority loading="eager" className="h-16 w-auto" />        </Link>
+          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority loading="eager" className="h-14 w-auto" />        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
                       <a key="Intelligence" href="/intelligence" className="text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors duration-150">
@@ -473,7 +473,7 @@ function MockFooter() {
     <footer className="bg-white border-t border-black/[0.06] py-10 px-6">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <Image src="/logo.png" alt="Qobotic" width={180} height={88} className="h-12 w-auto" />
+          <span className="text-[13px] font-semibold text-[#1d1d1f]">Qobotic</span>
           <div className="flex items-center gap-6">
             <Link href="/" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Home</Link>
             <Link href="/intelligence" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Intelligence</Link>
