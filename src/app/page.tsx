@@ -552,7 +552,7 @@ function MockFooter() {
       <div className="max-w-[1280px] mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2 sm:col-span-1">
-            <span className="text-[13px] font-semibold text-white block mb-3">Qobotic</span>
+            <Image src="/logo.png" alt="Qobotic" width={600} height={61} className="h-6 w-auto invert brightness-200 mb-3" />
             <p className="text-[12px] text-white/40 leading-relaxed max-w-[200px]">
               Powering enterprise automation and humanoid fleets across Europe.
             </p>

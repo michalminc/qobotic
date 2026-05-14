@@ -473,7 +473,7 @@ function MockFooter() {
     <footer className="bg-white border-t border-black/[0.06] py-10 px-6">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <span className="text-[13px] font-semibold text-[#1d1d1f]">Qobotic</span>
+          <Image src="/logo.png" alt="Qobotic" width={600} height={61} className="h-6 w-auto" />
           <div className="flex items-center gap-6">
             <Link href="/" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Home</Link>
             <Link href="/intelligence" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Intelligence</Link>
