@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Brain, Factory, Rocket, Cpu, Eye, Navigation2, MessageSquare, GitBranch, Zap, FlaskConical, Building2, Newspaper, ChevronRight } from "lucide-react";
+import { Reveal } from "@/components/reveal";
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
 // Apple/Tesla light theme
@@ -21,12 +22,9 @@ function MockNav() {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06]">
-      <div className="max-w-[1280px] mx-auto px-6 h-14 flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full border-2 border-[#1d1d1f] flex items-center justify-center">
-            <span className="text-[10px] font-black text-[#1d1d1f]">Q</span>
-          </div>
-          <span className="text-[13px] font-semibold tracking-tight text-[#1d1d1f]">Qobots</span>
+          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority className="h-9 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -554,11 +552,8 @@ function MockFooter() {
       <div className="max-w-[1280px] mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2 sm:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-6 h-6 rounded-full border border-white/30 flex items-center justify-center">
-                <span className="text-[9px] font-black text-white">Q</span>
-              </div>
-              <span className="text-[13px] font-semibold text-white">Qobots Intelligence</span>
+            <div className="flex items-center mb-4">
+              <Image src="/logo.png" alt="Qobotic" width={180} height={88} className="h-8 w-auto invert brightness-200" />
             </div>
             <p className="text-[12px] text-white/40 leading-relaxed max-w-[200px]">
               Powering enterprise automation and humanoid fleets across Europe.
@@ -600,12 +595,12 @@ export default function HomePage() {
       <MockNav />
       <HeroSection />
 
-      <PillarsSection />
-      <LabSection />
-      <StackSection />
-      <PartnersSection />
-      <TeamSection />
-      <ContactSection />
+      <Reveal><PillarsSection /></Reveal>
+      <Reveal direction="up" delay={50}><LabSection /></Reveal>
+      <Reveal><StackSection /></Reveal>
+      <Reveal direction="up" delay={50}><PartnersSection /></Reveal>
+      <Reveal><TeamSection /></Reveal>
+      <Reveal><ContactSection /></Reveal>
       <MockFooter />
     </div>
   );

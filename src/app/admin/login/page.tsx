@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function AdminLoginPage() {
@@ -37,11 +38,9 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f5f5f7] px-6">
       <div className="w-full max-w-[400px] bg-white rounded-3xl border border-black/[0.08] p-8 shadow-sm">
-        <div className="flex items-center gap-2.5 mb-8">
-          <div className="w-8 h-8 rounded-full border-2 border-[#1d1d1f] flex items-center justify-center">
-            <span className="text-[11px] font-black text-[#1d1d1f]">Q</span>
-          </div>
-          <span className="text-[15px] font-semibold tracking-tight text-[#1d1d1f]">Qobots Admin</span>
+        <div className="flex items-center gap-3 mb-8">
+          <Image src="/logo.png" alt="Qobotic" width={152} height={75} className="h-8 w-auto" priority />
+          <span className="text-[11px] text-[#86868b] tracking-widest uppercase font-medium">Admin</span>
         </div>
 
         <h1 className="text-[28px] font-bold tracking-[-0.02em] text-[#1d1d1f] mb-1">Sign in</h1>

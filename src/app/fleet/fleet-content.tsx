@@ -9,12 +9,9 @@ import Image from "next/image";
 function MockNav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06]">
-      <div className="max-w-[1280px] mx-auto px-6 h-14 flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full border-2 border-[#1d1d1f] flex items-center justify-center">
-            <span className="text-[10px] font-black text-[#1d1d1f]">Q</span>
-          </div>
-          <span className="text-[13px] font-semibold tracking-tight text-[#1d1d1f]">Qobots</span>
+          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority className="h-9 w-auto" />
           <span className="text-[11px] text-[#86868b] tracking-widest uppercase font-medium">Fleet</span>
         </Link>
 
@@ -453,12 +450,7 @@ function MockFooter() {
     <footer className="bg-[#f5f5f7] border-t border-black/[0.06] py-10 px-6">
       <div className="max-w-[1280px] mx-auto flex flex-col gap-6">
         <div className="flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex items-center gap-2.5">
-            <div className="w-6 h-6 rounded-full border-2 border-[#1d1d1f] flex items-center justify-center">
-              <span className="text-[9px] font-black text-[#1d1d1f]">Q</span>
-            </div>
-            <span className="text-[13px] font-semibold text-[#1d1d1f]">Qobots</span>
-          </div>
+          <Image src="/logo.png" alt="Qobotic" width={180} height={88} className="h-8 w-auto" />
           <div className="flex items-center gap-6 flex-wrap">
             <Link href="/" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Home</Link>
             <Link href="/operations" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Operations</Link>

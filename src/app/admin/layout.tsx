@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAdminUser } from "@/lib/admin";
 import LogoutButton from "./logout-button";
 
@@ -24,10 +25,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       <aside className="w-[240px] shrink-0 bg-white border-r border-black/[0.06] flex flex-col">
         <div className="px-6 py-5 border-b border-black/[0.06]">
           <Link href="/admin" className="flex items-center gap-2.5">
-            <div className="w-7 h-7 rounded-full border-2 border-[#1d1d1f] flex items-center justify-center">
-              <span className="text-[10px] font-black text-[#1d1d1f]">Q</span>
-            </div>
-            <span className="text-[13px] font-semibold tracking-tight text-[#1d1d1f]">Qobots Admin</span>
+            <Image src="/logo.png" alt="Qobotic" width={180} height={88} className="h-7 w-auto" />
+            <span className="text-[11px] text-[#86868b] tracking-widest uppercase font-medium">Admin</span>
           </Link>
         </div>
 
