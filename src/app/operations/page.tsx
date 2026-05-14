@@ -193,7 +193,7 @@ function InterfaceSlider() {
         </div>
 
         {/* Monitor */}
-        <div className="relative max-w-[960px]">
+        <div className="relative max-w-[900px] mx-auto">
           <div className="bg-[#1c1c1e] rounded-[20px] p-[10px] shadow-[0_40px_80px_rgba(0,0,0,0.25),inset_0_0_0_1px_rgba(255,255,255,0.06)]">
             <div className="absolute top-[5px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-[#3a3a3a] z-10" />
             {/* Screen — 3:2 to match the reference renders (1536x1024) */}

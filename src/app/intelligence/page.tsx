@@ -182,7 +182,7 @@ function InterfaceSlider() {
         </div>
 
         {/* Static monitor frame */}
-        <div className="relative">
+        <div className="relative max-w-[900px] mx-auto">
           {/* Monitor bezel */}
           <div className="bg-[#1c1c1e] rounded-[20px] p-[10px] shadow-[0_40px_80px_rgba(0,0,0,0.25),inset_0_0_0_1px_rgba(255,255,255,0.06)]">
             {/* Camera dot */}
