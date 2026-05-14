@@ -187,8 +187,8 @@ function InterfaceSlider() {
           <div className="bg-[#1c1c1e] rounded-[20px] p-[10px] shadow-[0_40px_80px_rgba(0,0,0,0.25),inset_0_0_0_1px_rgba(255,255,255,0.06)]">
             {/* Camera dot */}
             <div className="absolute top-[5px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-[#3a3a3a] z-10" />
-            {/* Screen — aspect 16:10 like Studio Display */}
-            <div className="relative rounded-[12px] overflow-hidden bg-[#0d0d0d]" style={{ aspectRatio: "16/10" }}>
+            {/* Screen — 3:2 to match the reference renders (1536x1024) */}
+            <div className="relative rounded-[12px] overflow-hidden bg-[#0d0d0d]" style={{ aspectRatio: "3/2" }}>
               {slides.map((s, i) => (
                 <div
                   key={s.tag}
