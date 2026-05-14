@@ -141,10 +141,10 @@ function LayersSection() {
 // ─── INTERFACE SLIDER ─────────────────────────────────────────────────────────
 
 const slides = [
-  { tag: "Live Telemetry",        image: "/images/app/telemetry.jpg",  caption: "Real-time robot state — joints, sensors, battery, task progress." },
-  { tag: "Perception",            image: "/images/app/perception.jpg", caption: "What the robot sees — RGB-D fused with object detection and 6-DOF pose estimation." },
-  { tag: "Behavior Orchestration", image: "/images/app/behavior.jpg",  caption: "Modular behavior trees — composable, reactive, version-controlled." },
-  { tag: "Skills Console",        image: "/images/app/skills.jpg",     caption: "Install, version, and deploy new behaviors to the robot." },
+  { tag: "Live Telemetry",        image: "/images/app/reference_dashboard.jpg", caption: "Real-time robot state — joints, sensors, battery, task progress." },
+  { tag: "Perception",            image: "/images/app/reference_control.jpg",  caption: "What the robot sees — RGB-D fused with object detection and 6-DOF pose estimation." },
+  { tag: "Behavior Orchestration", image: "/images/app/reference_object.jpg",  caption: "Modular behavior trees — composable, reactive, version-controlled." },
+  { tag: "Skills Console",        image: "/images/app/reference_training.jpg", caption: "Install, version, and deploy new behaviors to the robot." },
 ];
 
 function InterfaceSlider() {
