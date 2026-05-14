@@ -486,13 +486,66 @@ function PlatformsSection() {
 
 // ─── CONTACT ─────────────────────────────────────────────────────────────────
 
+// RFC-5322-lite: good enough for client-side hint; server still validates with Zod.
+const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 function ContactSection() {
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: "", email: "", message: "", website: "" });
 
-  function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (form.name && form.email) setSent(true);
+    setError(null);
+
+    const email = form.email.trim();
+    const name = form.name.trim();
+
+    if (!name) {
+      setError("Please enter your name.");
+      return;
+    }
+    if (!EMAIL_RE.test(email) || email.length > 254) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (form.message.length > 4000) {
+      setError("Message is too long (max 4000 characters).");
+      return;
+    }
+
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "SOFTWARE",
+          email,
+          name,
+          message: form.message.trim() || null,
+          source: "intelligence-contact",
+          website: form.website, // honeypot — must stay empty
+        }),
+      });
+      if (res.status === 429) {
+        setError("Too many requests. Please try again in a minute.");
+        setSubmitting(false);
+        return;
+      }
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        setError(j.error || "Failed to send. Please try again.");
+        setSubmitting(false);
+        return;
+      }
+      setSent(true);
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -513,13 +566,24 @@ function ContactSection() {
               <p className="text-[15px] text-[#6e6e73]">We&apos;ll be in touch within 24 hours.</p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+              {/* Honeypot — hidden from humans, bots fill it. */}
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={form.website}
+                onChange={(e) => setForm((f) => ({ ...f, website: e.target.value }))}
+                className="absolute -left-[9999px] w-px h-px opacity-0"
+              />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-[12px] font-semibold uppercase tracking-widest text-[#86868b] block mb-2">Name</label>
                   <input
                     type="text"
                     required
+                    maxLength={120}
                     value={form.name}
                     onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                     placeholder="Jane Smith"
@@ -531,6 +595,7 @@ function ContactSection() {
                   <input
                     type="email"
                     required
+                    maxLength={254}
                     value={form.email}
                     onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                     placeholder="jane@company.com"
@@ -542,17 +607,22 @@ function ContactSection() {
                 <label className="text-[12px] font-semibold uppercase tracking-widest text-[#86868b] block mb-2">Tell us about your robot</label>
                 <textarea
                   rows={4}
+                  maxLength={4000}
                   value={form.message}
                   onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
                   placeholder="What platform? What tasks? What's the deployment context?"
                   className="w-full px-4 py-3 rounded-xl bg-[#f5f5f7] border border-black/[0.08] text-[14px] text-[#1d1d1f] placeholder-[#86868b] outline-none focus:border-black/[0.25] transition-colors resize-none"
                 />
               </div>
+              {error && (
+                <p role="alert" className="text-[13px] text-red-600">{error}</p>
+              )}
               <button
                 type="submit"
-                className="px-8 py-3.5 text-[14px] font-medium text-white bg-[#1d1d1f] hover:bg-[#333] rounded-full transition-colors"
+                disabled={submitting}
+                className="px-8 py-3.5 text-[14px] font-medium text-white bg-[#1d1d1f] hover:bg-[#333] rounded-full transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send message →
+                {submitting ? "Sending…" : "Send message →"}
               </button>
             </form>
           )}

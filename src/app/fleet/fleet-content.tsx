@@ -128,30 +128,49 @@ export type Robot = {
 
 type InquiryType = "software" | "robot";
 
+const EMAIL_RE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 function InquiryModal({ robot, type, onClose }: { robot: Robot; type: InquiryType; onClose: () => void }) {
   const [sent, setSent] = useState(false);
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [website, setWebsite] = useState(""); // honeypot
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!email.trim()) return;
-    setSubmitting(true);
     setError(null);
+
+    const trimmed = email.trim();
+    if (!EMAIL_RE.test(trimmed) || trimmed.length > 254) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    if (message.length > 4000) {
+      setError("Message is too long (max 4000 characters).");
+      return;
+    }
+
+    setSubmitting(true);
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type: type === "software" ? "SOFTWARE" : "ROBOT_INQUIRY",
-          email: email.trim(),
+          email: trimmed,
           message: message.trim() || null,
           robotSlug: robot.slug,
           source: type === "software" ? "fleet-card-software" : "fleet-card-robot",
+          website, // honeypot
         }),
       });
+      if (res.status === 429) {
+        setError("Too many requests. Please try again in a minute.");
+        setSubmitting(false);
+        return;
+      }
       if (!res.ok) {
         const j = await res.json().catch(() => ({}));
         setError(j.error || "Failed to send. Please try again.");
@@ -194,13 +213,24 @@ function InquiryModal({ robot, type, onClose }: { robot: Robot; type: InquiryTyp
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+              {/* Honeypot */}
+              <input
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={website}
+                onChange={(e) => setWebsite(e.target.value)}
+                className="absolute -left-[9999px] w-px h-px opacity-0"
+              />
               <input
                 type="email"
                 placeholder="your@email.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                maxLength={254}
                 className="w-full px-4 py-3 rounded-xl border border-black/[0.1] bg-[#f5f5f7] text-[14px] text-[#1d1d1f] placeholder-[#86868b] outline-none focus:border-black/[0.3] transition-colors"
               />
               <textarea
@@ -210,6 +240,7 @@ function InquiryModal({ robot, type, onClose }: { robot: Robot; type: InquiryTyp
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 rows={4}
+                maxLength={4000}
                 className="w-full px-4 py-3 rounded-xl border border-black/[0.1] bg-[#f5f5f7] text-[14px] text-[#1d1d1f] placeholder-[#86868b] outline-none focus:border-black/[0.3] transition-colors resize-none"
               />
               {error && <p className="text-[13px] text-red-600">{error}</p>}
