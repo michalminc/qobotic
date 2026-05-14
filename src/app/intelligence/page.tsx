@@ -137,229 +137,15 @@ function LayersSection() {
   );
 }
 
-// ─── APP MOCKUPS (dark, same as original site) ───────────────────────────────
-
-function TelemetryMockup() {
-  const joints = [
-    { name: "SHOULDER_L", pct: 72 }, { name: "SHOULDER_R", pct: 58 },
-    { name: "ELBOW_L", pct: 41 }, { name: "ELBOW_R", pct: 83 },
-    { name: "WAIST", pct: 29 }, { name: "HIP_L", pct: 65 },
-    { name: "HIP_R", pct: 61 }, { name: "KNEE_L", pct: 48 },
-    { name: "KNEE_R", pct: 52 },
-  ];
-  return (
-    <div className="bg-[#0d0d0d] w-full h-full flex flex-col">
-      <div className="flex items-center justify-between px-3 py-2 border-b border-[#1a1a1a] shrink-0">
-        <div className="flex items-center gap-2">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
-          <span className="font-mono text-[10px] text-[#aaa]">AGIBOT-X2-007</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="font-mono text-[9px] text-[#4ade80]">ONLINE</span>
-          <span className="font-mono text-[9px] text-[#444] bg-[#111] px-1.5 py-0.5 rounded">IN PRODUCTION</span>
-        </div>
-      </div>
-      <div className="flex flex-1 min-h-0">
-        <div className="flex-1 px-3 py-2 border-r border-[#1a1a1a] overflow-hidden">
-          <span className="font-mono text-[8px] uppercase tracking-widest text-[#444] block mb-1.5">Joint Torque</span>
-          <div className="space-y-1.5">
-            {joints.map((j) => (
-              <div key={j.name} className="flex items-center gap-2">
-                <span className="font-mono text-[8px] text-[#444] w-[72px] shrink-0 truncate">{j.name}</span>
-                <div className="flex-1 h-1 bg-[#1a1a1a] rounded-full overflow-hidden">
-                  <div className="h-full bg-[#c4484f] rounded-full" style={{ width: `${j.pct}%` }} />
-                </div>
-                <span className="font-mono text-[8px] text-[#444] w-6 text-right shrink-0">{j.pct}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="w-[130px] shrink-0 flex flex-col px-2.5 py-2 gap-2">
-          <div className="space-y-1">
-            {[
-              { label: "BATTERY", val: "87%", color: "#4ade80" },
-              { label: "CPU", val: "34%", color: "#c4484f" },
-              { label: "TEMP", val: "42°C", color: "#fbbf24" },
-            ].map((v) => (
-              <div key={v.label} className="flex items-center justify-between">
-                <span className="font-mono text-[8px] text-[#444]">{v.label}</span>
-                <span className="font-mono text-[9px] font-bold" style={{ color: v.color }}>{v.val}</span>
-              </div>
-            ))}
-          </div>
-          <div className="border border-[#1a1a1a] rounded-lg p-1.5 bg-[#111]">
-            <span className="font-mono text-[7px] text-[#444] block mb-1">Joint torque · last 60s</span>
-            <svg viewBox="0 0 110 28" className="w-full h-[28px]">
-              <polyline points="0,22 10,18 20,20 30,12 40,16 50,8 60,14 70,10 80,18 90,6 100,12 110,9" fill="none" stroke="#c4484f" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-          <div className="border border-[#1a1a1a] rounded-lg p-2 bg-[#111] flex-1">
-            <span className="font-mono text-[7px] text-[#444] block mb-1">CURRENT TASK</span>
-            <span className="font-mono text-[8px] text-[#aaa] block leading-tight mb-2">Restocking shelf 3</span>
-            <div className="h-1 bg-[#1a1a1a] rounded-full overflow-hidden">
-              <div className="h-full bg-[#c4484f] rounded-full" style={{ width: "64%" }} />
-            </div>
-            <span className="font-mono text-[7px] text-[#c4484f] block mt-0.5">64%</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function PerceptionMockup() {
-  const detections = [
-    { label: "box", conf: "0.94", x: 28, y: 55, w: 72, h: 70 },
-    { label: "cup", conf: "0.87", x: 130, y: 80, w: 44, h: 54 },
-    { label: "person", conf: "0.99", x: 200, y: 20, w: 65, h: 130 },
-  ];
-  return (
-    <div className="bg-[#0d0d0d] w-full h-full flex flex-col">
-      <div className="flex items-center justify-between px-3 py-2 border-b border-[#1a1a1a] shrink-0">
-        <span className="font-mono text-[9px] text-[#555]">RGB-D · YOLO v11</span>
-        <span className="font-mono text-[9px] text-[#4ade80]">30 FPS</span>
-      </div>
-      <div className="flex flex-1 min-h-0">
-        <div className="flex-1 relative bg-[#111] m-2 mr-1 rounded-lg overflow-hidden">
-          <svg viewBox="0 0 280 180" className="absolute inset-0 w-full h-full opacity-30">
-            <rect x="35" y="60" width="65" height="60" rx="3" fill="#333" />
-            <rect x="135" y="85" width="38" height="44" rx="6" fill="#2a2a2a" />
-            <rect x="200" y="25" width="56" height="108" rx="5" fill="#2a2a2a" />
-          </svg>
-          <svg viewBox="0 0 280 180" className="absolute inset-0 w-full h-full">
-            {detections.map((d) => (
-              <g key={d.label}>
-                <rect x={d.x} y={d.y} width={d.w} height={d.h} fill="none" stroke="#c4484f" strokeWidth="1.2" strokeDasharray="3,2" />
-                <rect x={d.x} y={d.y - 11} width={d.label.length * 5.5 + 22} height="11" fill="#c4484f" rx="2" />
-                <text x={d.x + 3} y={d.y - 2} fill="white" fontSize="7" fontFamily="monospace">{d.label} · {d.conf}</text>
-              </g>
-            ))}
-          </svg>
-        </div>
-        <div className="w-[48px] shrink-0 flex flex-col gap-1 mr-2 my-2">
-          <span className="font-mono text-[7px] text-[#444] text-center">DEPTH</span>
-          <div className="flex-1 rounded-lg overflow-hidden" style={{ background: "linear-gradient(180deg,#eee 0%,#999 30%,#555 60%,#222 100%)", opacity: 0.5 }} />
-        </div>
-      </div>
-      <div className="px-3 py-2 border-t border-[#1a1a1a] shrink-0">
-        <span className="font-mono text-[8px] text-[#444] mr-2">DETECTIONS</span>
-        {["box 0.94", "cup 0.87", "person 0.99", "chair 0.76"].map((d, i) => (
-          <span key={d} className="font-mono text-[8px] text-[#666] mr-2">{d}{i < 3 ? " ·" : ""}</span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function BehaviorTreeMockup() {
-  return (
-    <div className="bg-[#0d0d0d] w-full h-full flex flex-col">
-      <div className="flex items-center gap-1.5 px-3 py-2 border-b border-[#1a1a1a] shrink-0">
-        {["Save", "Run"].map((btn) => (
-          <button key={btn} className="font-mono text-[9px] px-2.5 py-1 rounded-md border border-[#2a2a2a] text-[#888] bg-[#111]">{btn}</button>
-        ))}
-        <button className="font-mono text-[9px] px-2.5 py-1 rounded-md border border-[#c4484f] text-[#c4484f] bg-[rgba(196,72,79,0.08)]">Deploy →</button>
-        <div className="flex-1" />
-        <span className="font-mono text-[8px] text-[#444]">v2.3.1</span>
-      </div>
-      <div className="flex flex-1 min-h-0">
-        <div className="flex-1 relative overflow-hidden">
-          <svg viewBox="0 0 230 170" className="w-full h-full">
-            <line x1="115" y1="32" x2="45" y2="72" stroke="#2a2a2a" strokeWidth="1" />
-            <line x1="115" y1="32" x2="115" y2="72" stroke="#2a2a2a" strokeWidth="1" />
-            <line x1="115" y1="32" x2="185" y2="72" stroke="#2a2a2a" strokeWidth="1" />
-            <line x1="185" y1="92" x2="155" y2="132" stroke="#2a2a2a" strokeWidth="1" />
-            <line x1="185" y1="92" x2="215" y2="132" stroke="#2a2a2a" strokeWidth="1" />
-            <rect x="80" y="16" width="70" height="20" rx="4" fill="#1a1a1a" stroke="#333" strokeWidth="1" />
-            <text x="115" y="30" textAnchor="middle" fill="white" fontSize="8" fontFamily="monospace">Sequence</text>
-            {[
-              { x: 12, y: 72, w: 64, label: "Perceive", hi: false },
-              { x: 80, y: 72, w: 70, label: "Plan", hi: false },
-              { x: 152, y: 72, w: 66, label: "Execute", hi: true },
-            ].map((n) => (
-              <g key={n.label}>
-                <rect x={n.x} y={n.y} width={n.w} height="20" rx="4" fill={n.hi ? "rgba(196,72,79,0.15)" : "#1a1a1a"} stroke={n.hi ? "#c4484f" : "#333"} strokeWidth="1" />
-                <text x={n.x + n.w / 2} y={n.y + 14} textAnchor="middle" fill={n.hi ? "#c4484f" : "#888"} fontSize="8" fontFamily="monospace">{n.label}</text>
-              </g>
-            ))}
-            <rect x="118" y="132" width="58" height="18" rx="3" fill="#111" stroke="#222" strokeWidth="1" />
-            <text x="147" y="144" textAnchor="middle" fill="#555" fontSize="7" fontFamily="monospace">Move arm</text>
-            <rect x="184" y="132" width="64" height="18" rx="3" fill="#111" stroke="#222" strokeWidth="1" />
-            <text x="216" y="144" textAnchor="middle" fill="#555" fontSize="7" fontFamily="monospace">Grasp object</text>
-          </svg>
-        </div>
-        <div className="w-[80px] shrink-0 border-l border-[#1a1a1a] px-2 py-2 flex flex-col gap-2">
-          <span className="font-mono text-[7px] uppercase tracking-widest text-[#444] block">Inspector</span>
-          {[{ k: "Type", v: "Action" }, { k: "Timeout", v: "5000ms" }, { k: "Retry", v: "3" }, { k: "Status", v: "running" }].map((f) => (
-            <div key={f.k}>
-              <span className="font-mono text-[7px] text-[#444] block">{f.k}</span>
-              <span className="font-mono text-[8px] text-[#888] block">{f.v}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="px-3 py-1.5 border-t border-[#1a1a1a] shrink-0 flex items-center gap-3">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80]" />
-        <span className="font-mono text-[8px] text-[#444]">Tree valid · 12 nodes · last deployed 2h ago</span>
-      </div>
-    </div>
-  );
-}
-
-function SkillsConsoleMockup() {
-  const skills = [
-    { name: "Object Grasping Pro", provider: "by Qobots Lab", version: "v2.3", installed: true },
-    { name: "Voice Command EN", provider: "by Qobots Lab", version: "v1.8", installed: true },
-    { name: "SLAM Indoor v2.1", provider: "by Qobots Lab", version: "v2.1", installed: true },
-    { name: "Face Recognition", provider: "by Dexio Labs", version: "v3.0", installed: false },
-    { name: "Stair Climbing", provider: "by Community", version: "v0.9-beta", installed: false },
-  ];
-  return (
-    <div className="bg-[#0d0d0d] w-full h-full flex flex-col">
-      <div className="px-3 pt-3 pb-2 border-b border-[#1a1a1a] shrink-0">
-        <div className="flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-[#222] bg-[#111] mb-2">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#444" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          <span className="font-mono text-[9px] text-[#333]">Search skills…</span>
-        </div>
-        <div className="flex items-center gap-1.5 flex-wrap">
-          {["All", "Navigation", "Manipulation", "Language", "Vision"].map((chip, i) => (
-            <span key={chip} className={`font-mono text-[7px] px-2 py-0.5 rounded-full border ${i === 0 ? "border-[#c4484f] text-[#c4484f] bg-[rgba(196,72,79,0.1)]" : "border-[#222] text-[#444]"}`}>{chip}</span>
-          ))}
-        </div>
-      </div>
-      <div className="flex-1 overflow-hidden divide-y divide-[#111]">
-        {skills.map((s) => (
-          <div key={s.name} className="flex items-center gap-2 px-3 py-2 hover:bg-[#111] transition-colors">
-            <div className="flex-1 min-w-0">
-              <span className="font-mono text-[9px] font-semibold text-white block truncate">{s.name}</span>
-              <span className="font-mono text-[8px] text-[#444] block">{s.provider}</span>
-            </div>
-            <span className="font-mono text-[8px] text-[#555] bg-[#111] border border-[#222] px-1.5 py-0.5 rounded shrink-0">{s.version}</span>
-            {s.installed
-              ? <span className="font-mono text-[8px] text-[#4ade80] border border-[rgba(74,222,128,0.3)] bg-[rgba(74,222,128,0.06)] px-1.5 py-0.5 rounded shrink-0">INSTALLED</span>
-              : <span className="font-mono text-[8px] text-[#c4484f] border border-[rgba(196,72,79,0.4)] px-1.5 py-0.5 rounded shrink-0 cursor-pointer hover:bg-[rgba(196,72,79,0.1)]">INSTALL</span>
-            }
-          </div>
-        ))}
-      </div>
-      <div className="px-3 py-2 border-t border-[#1a1a1a] shrink-0 flex items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-[#fbbf24]" />
-        <span className="font-mono text-[8px] text-[#444]">12 skills installed · 3 updates available</span>
-      </div>
-    </div>
-  );
-}
 
 // ─── INTERFACE SLIDER ─────────────────────────────────────────────────────────
 
 const slides = [
-  { tag: "Live Telemetry", caption: "Real-time robot state — joints, sensors, battery, task progress." },
-  { tag: "Perception", caption: "What the robot sees — RGB-D fused with object detection and 6-DOF pose estimation." },
-  { tag: "Behavior Orchestration", caption: "Modular behavior trees — composable, reactive, version-controlled." },
-  { tag: "Skills Console", caption: "Install, version, and deploy new behaviors to the robot." },
+  { tag: "Live Telemetry",        image: "/images/app/telemetry.jpg",  caption: "Real-time robot state — joints, sensors, battery, task progress." },
+  { tag: "Perception",            image: "/images/app/perception.jpg", caption: "What the robot sees — RGB-D fused with object detection and 6-DOF pose estimation." },
+  { tag: "Behavior Orchestration", image: "/images/app/behavior.jpg",  caption: "Modular behavior trees — composable, reactive, version-controlled." },
+  { tag: "Skills Console",        image: "/images/app/skills.jpg",     caption: "Install, version, and deploy new behaviors to the robot." },
 ];
-
-const slideComponents = [TelemetryMockup, PerceptionMockup, BehaviorTreeMockup, SkillsConsoleMockup];
 
 function InterfaceSlider() {
   const [active, setActive] = useState(0);
@@ -402,14 +188,22 @@ function InterfaceSlider() {
             {/* Camera dot */}
             <div className="absolute top-[5px] left-1/2 -translate-x-1/2 w-[5px] h-[5px] rounded-full bg-[#3a3a3a] z-10" />
             {/* Screen — aspect 16:10 like Studio Display */}
-            <div className="relative rounded-[12px] overflow-hidden" style={{ aspectRatio: "16/10" }}>
-              {slideComponents.map((Comp, i) => (
+            <div className="relative rounded-[12px] overflow-hidden bg-[#0d0d0d]" style={{ aspectRatio: "16/10" }}>
+              {slides.map((s, i) => (
                 <div
-                  key={i}
+                  key={s.tag}
                   className="absolute inset-0 transition-opacity duration-300"
                   style={{ opacity: active === i ? 1 : 0, pointerEvents: active === i ? "auto" : "none" }}
+                  aria-hidden={active !== i}
                 >
-                  <Comp />
+                  <Image
+                    src={s.image}
+                    alt={s.tag}
+                    fill
+                    sizes="(min-width: 1280px) 1260px, 90vw"
+                    className="object-cover"
+                    priority={i === 0}
+                  />
                 </div>
               ))}
             </div>
