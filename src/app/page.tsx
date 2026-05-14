@@ -22,9 +22,9 @@ function MockNav() {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06]">
-      <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto px-6 h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority className="h-9 w-auto" />
+          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority loading="eager" className="h-16 w-auto" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -553,7 +553,7 @@ function MockFooter() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
           <div className="col-span-2 sm:col-span-1">
             <div className="flex items-center mb-4">
-              <Image src="/logo.png" alt="Qobotic" width={180} height={88} className="h-8 w-auto invert brightness-200" />
+              <Image src="/logo.png" alt="Qobotic" width={180} height={88} className="h-12 w-auto invert brightness-200" />
             </div>
             <p className="text-[12px] text-white/40 leading-relaxed max-w-[200px]">
               Powering enterprise automation and humanoid fleets across Europe.

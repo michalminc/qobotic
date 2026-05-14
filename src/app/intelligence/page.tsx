@@ -10,11 +10,9 @@ import { ChevronRight, ChevronLeft, Brain, Eye, GitBranch, Zap, Navigation2, Mes
 function MockNav() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-black/[0.06]">
-      <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-[1280px] mx-auto px-6 h-24 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority className="h-9 w-auto" />
-          <span className="text-[11px] text-[#86868b] tracking-widest uppercase font-medium">Intelligence</span>
-        </Link>
+          <Image src="/logo.png" alt="Qobotic" width={180} height={88} priority loading="eager" className="h-16 w-auto" />        </Link>
 
         <nav className="hidden md:flex items-center gap-8">
                       <a key="Intelligence" href="/intelligence" className="text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors duration-150">
