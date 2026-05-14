@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { CurrencyProvider } from "@/lib/currency-context";
-import { CartProvider } from "@/lib/cart-context";
-import { AuthProvider } from "@/lib/auth-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dexio — Robot Marketplace",
-  description: "Rent, buy or power up any robot. Premium B2B marketplace for humanoid robot rental, sales, and AI skill modules.",
+  title: "Qobots — The intelligence layer for humanoid robots",
+  description: "Full AI stack for humanoid robots. robotManager + Operations Platform — deployed across European fleets.",
 };
 
 export default function RootLayout({
@@ -30,14 +27,8 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-black text-[#f0f0f8]">
-        <AuthProvider>
-          <CurrencyProvider>
-            <CartProvider>
-              <main className="flex-1">{children}</main>
-            </CartProvider>
-          </CurrencyProvider>
-        </AuthProvider>
+      <body className="min-h-full flex flex-col bg-white text-[#1d1d1f]">
+        <main className="flex-1">{children}</main>
       </body>
     </html>
   );

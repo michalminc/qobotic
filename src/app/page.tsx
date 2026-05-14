@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Brain, Factory, Rocket, Cpu, Eye, Navigation2, MessageSquare, GitBranch, Zap, FlaskConical, Building2, Newspaper, ChevronRight } from "lucide-react";
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────────────────────
@@ -64,11 +65,13 @@ function HeroSection() {
     <section className="relative min-h-[580px] sm:min-h-[700px] lg:h-[920px] flex items-center overflow-hidden bg-white">
       {/* Photo — right 58%, full height */}
       <div className="absolute top-0 right-0 w-[58%] bottom-0 hidden lg:block">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/images/heroes/hero-home-light.jpg"
           alt="Engineer programming a humanoid robot"
-          className="absolute inset-0 w-full h-full object-cover object-[50%_30%]"
+          fill
+          priority
+          sizes="58vw"
+          className="object-cover object-[50%_30%]"
         />
         {/* Fade left — grey-to-white blend */}
         <div className="absolute inset-y-0 left-0 w-80 bg-gradient-to-r from-white via-white/80 to-transparent" />
@@ -132,11 +135,12 @@ function CaseStudySection() {
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Photo */}
           <div className="relative rounded-3xl overflow-hidden bg-white shadow-[0_4px_40px_rgba(0,0,0,0.10)] h-[340px] sm:h-[480px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/images/agibot-case-study-light.jpg"
               alt="AgiBot X2 Ultra"
-              className="absolute inset-0 w-full h-full object-cover object-[50%_15%]"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover object-[50%_15%]"
             />
           </div>
 
@@ -207,12 +211,12 @@ function PillarsSection() {
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4">
           {pillars.map((p) => (
             <div key={p.label} className="group relative rounded-3xl overflow-hidden h-[560px] bg-[#f5f5f7] flex flex-col justify-between">
-              {/* Full-bleed image */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={p.image}
                 alt={p.label}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700"
+                fill
+                sizes="(min-width: 768px) 33vw, 100vw"
+                className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
               />
 
               {/* Top gradient for text */}
@@ -256,11 +260,12 @@ function LabSection() {
 
         {/* Wide image box */}
         <div className="group relative w-full rounded-3xl overflow-hidden mt-16 bg-[#f5f5f7]" style={{ aspectRatio: "21/9" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/lab-section-light.jpg"
             alt="The Lab — robotics AI research facility"
-            className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
+            fill
+            sizes="(min-width: 1280px) 1280px, 100vw"
+            className="object-cover object-center group-hover:scale-[1.02] transition-transform duration-700"
           />
           {/* Bottom gradient for CTA */}
           <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white/90 to-transparent" />
@@ -574,9 +579,13 @@ function MockFooter() {
             </div>
           ))}
         </div>
-        <div className="pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row justify-between gap-2">
-          <span className="text-[12px] text-white/30">© 2025 Qobots Intelligence. All rights reserved.</span>
-          <span className="text-[12px] text-white/30">Warsaw, Poland · EU</span>
+        <div className="pt-8 border-t border-white/[0.08] flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-end">
+          <div className="text-[12px] text-white/40 leading-relaxed">
+            <p className="text-white/60 font-medium">RENTNOW GROUP sp. z o.o.</p>
+            <p>ul. Złota 75A lok. 7, 00-819 Warszawa</p>
+            <p className="text-white/30">KRS 0001235271 · NIP 5273214205 · REGON 544497775</p>
+          </div>
+          <span className="text-[12px] text-white/30 shrink-0">© 2026 Qobots Intelligence. All rights reserved.</span>
         </div>
       </div>
     </footer>

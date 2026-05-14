@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { FlaskConical, ArrowRight } from "lucide-react";
 
 // ─── NAV ─────────────────────────────────────────────────────────────────────
@@ -31,9 +32,9 @@ function MockNav() {
             <a key="Fleet" href="/fleet" className="text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors duration-150">
               Fleet
             </a>
-            <a key="Team" href="/#team" className="text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors duration-150">
+            <Link key="Team" href="/#team" className="text-[13px] text-[#6e6e73] hover:text-[#1d1d1f] transition-colors duration-150">
               Team
-            </a>
+            </Link>
         </nav>
 
         <a href="#collaborate" className="hidden md:flex items-center gap-1.5 px-5 py-2 rounded-full bg-[#1d1d1f] text-white text-[13px] font-medium hover:bg-[#333] transition-colors duration-150">
@@ -50,11 +51,13 @@ function HeroSection() {
   return (
     <section className="relative min-h-[580px] sm:min-h-[700px] lg:h-[880px] flex items-center overflow-hidden bg-white">
       <div className="absolute top-0 right-0 w-[60%] bottom-0 hidden lg:block">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/images/heroes/hero-lab-light.jpg"
           alt="Qobots Lab — robotics R&D facility"
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          fill
+          priority
+          sizes="60vw"
+          className="object-cover object-center"
         />
         <div className="absolute inset-y-0 left-0 w-80 bg-gradient-to-r from-white via-white/85 to-transparent" />
         <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/60 to-transparent" />
@@ -109,11 +112,12 @@ function LabImage({ src, alt, caption, aspect }: {
       className={`relative w-full rounded-2xl overflow-hidden border border-black/[0.06] group hover:scale-[1.005] transition-transform duration-500 bg-[#f5f5f7] ${aspect}`}
     >
       {!errored ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
+        <Image
           src={src}
           alt={alt}
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          sizes="(min-width: 1024px) 33vw, 100vw"
+          className="object-cover"
           onError={() => setErrored(true)}
         />
       ) : (
@@ -472,18 +476,27 @@ function FinalCTASection() {
 function MockFooter() {
   return (
     <footer className="bg-white border-t border-black/[0.06] py-10 px-6">
-      <div className="max-w-[1280px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2.5">
-          <div className="w-6 h-6 rounded-full border-2 border-[#1d1d1f] flex items-center justify-center">
-            <span className="text-[9px] font-black text-[#1d1d1f]">Q</span>
+      <div className="max-w-[1280px] mx-auto flex flex-col gap-6">
+        <div className="flex items-center justify-between gap-4 flex-wrap">
+          <div className="flex items-center gap-2.5">
+            <div className="w-6 h-6 rounded-full border-2 border-[#1d1d1f] flex items-center justify-center">
+              <span className="text-[9px] font-black text-[#1d1d1f]">Q</span>
+            </div>
+            <span className="text-[13px] font-semibold text-[#1d1d1f]">Qobots</span>
           </div>
-          <span className="text-[13px] font-semibold text-[#1d1d1f]">Qobots</span>
+          <div className="flex items-center gap-6">
+            <Link href="/" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Home</Link>
+            <Link href="/intelligence" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Intelligence</Link>
+            <Link href="/operations" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Operations</Link>
+          </div>
         </div>
-        <span className="text-[12px] text-[#86868b]">© 2025 Qobots Lab. Mock page.</span>
-        <div className="flex items-center gap-6">
-          <Link href="/" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">← Home mock</Link>
-          <Link href="/intelligence" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Intelligence</Link>
-          <Link href="/operations" className="text-[12px] text-[#86868b] hover:text-[#1d1d1f] transition-colors">Operations</Link>
+        <div className="pt-6 border-t border-black/[0.06] flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-end">
+          <div className="text-[12px] text-[#86868b] leading-relaxed">
+            <p className="text-[#1d1d1f] font-medium">RENTNOW GROUP sp. z o.o.</p>
+            <p>ul. Złota 75A lok. 7, 00-819 Warszawa</p>
+            <p className="text-[#86868b]">KRS 0001235271 · NIP 5273214205 · REGON 544497775</p>
+          </div>
+          <span className="text-[12px] text-[#86868b] shrink-0">© 2026 Qobots Lab. All rights reserved.</span>
         </div>
       </div>
     </footer>

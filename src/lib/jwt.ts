@@ -1,6 +1,9 @@
 import { SignJWT, jwtVerify } from "jose";
 
-const secret = new TextEncoder().encode(process.env.JWT_SECRET || "fallback-dev-secret");
+if (!process.env.JWT_SECRET || process.env.JWT_SECRET.length < 32) {
+  throw new Error("JWT_SECRET must be set in environment and be at least 32 characters long");
+}
+const secret = new TextEncoder().encode(process.env.JWT_SECRET);
 
 export async function signToken(userId: string, role: string): Promise<string> {
   return new SignJWT({ sub: userId, role })
